@@ -1,0 +1,194 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+    .divider {
+        height: 4px;
+        background: linear-gradient(to right, #ff4d4d, #333);
+        margin: 30px 0;
+        border-radius: 5px;
+    }
+</style>
+<div class="container">
+    <div class="category-box">
+        <form action="DispatchServlet">
+            <div class="form-group">
+                <label for="txtSearchValue">Search value:</label>
+                <input type="search" class="form-control" 
+                       id="txtSearchValue" name="txtSearchValue" 
+                       required value="${param.txtSearchValue}">
+            </div>
+            <button type="submit" class="btn btn-default"
+                    name="btnAction" value="SearchProductUsingName">Submit</button>
+        </form>
+        <br/>
+        <br/>
+        <p style="color:red;font-size: 25px;font-weight: bold">${requestScope.NOTIFICATION}</p>
+        <c:if test="${empty requestScope.CATEGORY_LIST}">
+            <h3 class="btn btn-warning">There aren't any categories</h3>
+        </c:if>
+        <c:if test="${not empty requestScope.CATEGORY_LIST}">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Categories
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <c:url var="listAllProductsUrl" value="DispatchServlet">
+                        <c:param name="btnAction" value="ListAllProducts"></c:param>
+                    </c:url>
+                    <li><a href="${listAllProductsUrl}">All categories</a></li>
+                    <c:forEach var="category" items="${requestScope.CATEGORY_LIST}">
+                        <c:url var="filterProductUrl" value="DispatchServlet">
+                            <c:param name="btnAction" value="FilterProductByCategory"></c:param>
+                            <c:param name="txtTypeId" value="${category.typeId}"></c:param>
+                        </c:url>
+                        <li><a href="${filterProductUrl}">${category.categoryName}</a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Filter Products</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a href="DispatchServlet?btnAction=SortByPrice&type=asc">Sort by price ascendingly</a>
+                    </div>
+                    <div class="panel-body">
+                        <a href="DispatchServlet?btnAction=SortByPrice&type=desc">Sort by price descendingly</a>
+                    </div>
+                    <div class="panel-body">
+                        <a href="DispatchServlet?btnAction=FilterDiscount&type=YES">Discount Products</a>
+                    </div>
+                    <div class="panel-body">
+                        <a href="DispatchServlet?btnAction=FilterDiscount&type=NO">No discount Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <div class="priceFilter">
+        <form action="DispatchServlet" method="GET">
+            <div class="form-group">
+                Price that is lower than: <input type="number" name="txtPrice" 
+                                                 value="${param.txtPrice}" 
+                                                 class="form-control" 
+                                                 style="width:150px"
+                                                 required/> 
+                <input type="submit" name="btnAction" 
+                       value="FilterPrice" class="btn btn-primary"/>
+            </div>     
+        </form>
+    </div>
+
+    <c:if test="${sessionScope.USER_INFORMATION.roleInSystem == 2}">
+        <a href="DispatchServlet?btnAction=AddNewProduct" class="btn btn-success">Add new Product</a>
+    </c:if>
+    <br/>
+    <div class="row">
+        <c:if test="${not empty requestScope.PRODUCT_LIST}">
+            <c:set var="result" value="${requestScope.PRODUCT_LIST}"/>
+            <c:forEach var="dto" items="${result}">
+                <div class="col-sm-4">
+                    <div class="product-box">
+                        <c:if test="${sessionScope.USER_INFORMATION.roleInSystem == 2}">
+                            <c:url var="deleteUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="DeleteProduct"></c:param>
+                                <c:param name="txtProductId" value="${dto.productId}"></c:param>
+                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"></c:param>
+                            </c:url>
+                            <a href="${deleteUrl}" class="DeleteIcon">
+                                x
+                            </a>  
+
+                            <c:url var="updateUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="LoadUpdateProduct"></c:param>
+                                <c:param name="txtProductId" value="${dto.productId}"></c:param>
+                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"></c:param>
+                            </c:url>
+                            <a href="${updateUrl}" class="btn btn-warning btn-sm update-btn">
+                                <span class="glyphicon glyphicon-edit"></span> Update
+                            </a>
+                        </c:if>
+
+                        <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
+
+
+
+                        <c:url var="viewDetailUrl" value="DispatchServlet">
+                            <c:param name="btnAction" value="ViewProductDetail"/>
+                            <c:param name="txtProductId" value="${dto.productId}"/>
+                        </c:url>
+
+                        <a href="${viewDetailUrl}" class="btn btn-info btn-sm">
+                            View Details
+                        </a>
+
+
+
+                        <div class="inner-title">
+                            <h3>${dto.productName}</h3>
+                            <p>${dto.brief}</p>
+                            <c:if test="${dto.discount != 0}">
+                                <del>${dto.price} vnd</del>
+                                <p style="color:red">Discount: ${dto.discount}%!</p>
+                            </c:if>                           
+                            <h4 style="color:red">
+                                <fmt:formatNumber 
+                                    value="${dto.price - dto.price * dto.discount / 100}" 
+                                    type="number" 
+                                    groupingUsed="true"/>
+                                vnd
+                            </h4>
+                        </div>
+                    </div>                       
+                </div>
+            </c:forEach>
+        </c:if>
+    </div>
+    <c:if test="${empty requestScope.PRODUCT_LIST}">
+        <h3 style="color:red">Products not found</h3>
+    </c:if>     
+
+
+
+
+    <div class="divider"></div>
+
+    <h3 style="color: #ff6633; font-weight: bold">The products you have seen.</h3>
+
+    <div class="row">
+        <c:if test="${not empty sessionScope.VIEWED_LIST}">
+            <c:set var="result" value="${sessionScope.VIEWED_LIST}"/>
+            <c:forEach var="dto" items="${result}">
+                <div class="col-sm-4">
+                    <div class="product-box">
+
+                        <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
+                        <c:url var="viewDetailUrl" value="DispatchServlet">
+                            <c:param name="btnAction" value="ViewProductDetail"/>
+                            <c:param name="txtProductId" value="${dto.productId}"/>
+                        </c:url>
+                        <div class="inner-title">
+                            <h3>${dto.productName}</h3>
+                            <p>${dto.brief}</p>
+                            <c:if test="${dto.discount != 0}">
+                                <del>${dto.price} vnd</del>
+                                <p style="color:red">Discount: ${dto.discount}%!</p>
+                            </c:if>                           
+                            <h4 style="color:red">
+                                <fmt:formatNumber 
+                                    value="${dto.price - dto.price * dto.discount / 100}" 
+                                    type="number" 
+                                    groupingUsed="true"/>
+                                vnd
+                            </h4>
+                        </div>
+                    </div>                       
+                </div>
+            </c:forEach>
+        </c:if>
+    </div>
+</div>

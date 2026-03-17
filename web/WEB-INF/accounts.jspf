@@ -1,0 +1,100 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<c:set var="searchValue" value="${param.txtSearchValue}"/>
+<div class="container">
+    <div class="table">
+        <form action="DispatchServlet">
+            <div class="form-group">
+                <label for="txtSearchValue">Search using name</label>
+                <input type="text" class="form-control" 
+                       name="txtSearchValue" id="txtSearchValue" 
+                       value="${param.txtSearchValue}">
+            </div>
+            <button type="submit" name="btnAction" 
+                    value="SearchAccount" class="btn btn-default">Submit</button>
+        </form>
+        <c:if test="${empty requestScope.LIST_RESULT}">
+            <h2>There's no records match</h2>
+        </c:if>
+        <p style="color:red;font-size: 25px;font-weight: bold">${requestScope.NOTIFICATION}</p>
+        <c:set var="result" value="${requestScope.LIST_RESULT}"/>    
+        <c:if test="${not empty result}">
+            <table class="custom-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Password</th>
+                        <th>Last name</th>
+                        <th>First Name</th>
+                        <th>Birthday</th>
+                        <th>Gender</th>
+                        <th>Phone number</th>
+                        <th>Is use</th>
+                        <th>Role in the system</th>
+                <c:if test="${sessionScope.USER_INFORMATION.roleInSystem == 1}">
+                    <th>Actions</th>
+                </c:if>
+                </tr>
+                </thead>
+                <c:forEach var="dto" items="${result}">
+                    <tbody>
+                        <tr>
+                            <td>${dto.account}</td>
+                            <td>${dto.pass}</td>
+                            <td>${dto.lastName}</td>
+                            <td>${dto.firstName}</td>
+                            <td>${dto.birthday}</td>
+                            <td>${dto.gender ? "Male" : "Female"}</td>
+                            <td>${dto.phone}</td>
+                            <td>
+                    <c:if test="${dto.account != sessionScope.USER_INFORMATION.account && dto.roleInSystem > 1}">
+                        <form action="DispatchServlet">
+                            <input type="hidden" name="txtAccount" value="${dto.account}" />
+                            <input type="hidden" name="txtLastSearchValue" value="${param.txtSearchValue}" />
+                            <c:if test="${dto.isUse}">
+                                <input type="submit" name="btnAction"
+                                       value="Deactivate" class="btn btn-warning" >
+                            </c:if>
+                            <c:if test="${!dto.isUse}">
+                                <input type="submit" name="btnAction" 
+                                       value="Activate" class="btn btn-success">
+                            </c:if>
+                        </form>
+                    </c:if>                                
+                    </td>
+                    <c:if test="${dto.roleInSystem == 1}">
+                        <td>Administrator</td>
+                    </c:if>
+                    <c:if test="${dto.roleInSystem == 2}">
+                        <td>Normal Manager</td>
+                    </c:if>
+                    <c:if test="${dto.roleInSystem > 2}">
+                        <td>Customer</td>
+                    </c:if>
+                    <c:if test="${sessionScope.USER_INFORMATION.roleInSystem == 1}">
+                        <td>                           
+                        <c:if test="${sessionScope.USER_INFORMATION.account != dto.account  && dto.roleInSystem > 1}">
+                            <c:url var="deleteUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="DeleteAccount"></c:param>
+                                <c:param name="txtAccount" value="${dto.account}"></c:param>
+                                <c:param name="lastSearchValue" value="${searchValue}"></c:param>
+                            </c:url>
+                            <a href="${deleteUrl}" class="btn btn-danger">Delete</a>
+
+
+                            <c:url var="updateUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="LoadUpdateAccount"></c:param>
+                                <c:param name="txtAccount" value="${dto.account}"></c:param>
+                            </c:url>
+                            <a href="${updateUrl}" class="btn btn-primary">Update</a>
+                        </c:if>
+                        </td>
+                    </c:if>
+                    </tr>
+                    </tbody>                    
+                </c:forEach>
+            </table>
+        </c:if> 
+    </div>
+</div> 
+

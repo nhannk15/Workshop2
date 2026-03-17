@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+/* Table */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.custom-table th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.custom-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.custom-table tr:hover {
+    background-color: #eef2ff;
+    transition: 0.2s;
+}
+
+/* Section one */
+.section-one a {
+    padding: 15px;
+    background-color: blanchedalmond;
+    color:brown;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.section-one .login-box{
+    width: 400px;
+    background-color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* Section two */
+.section-two .navbar-inverse {
+    background-color: #698a82;   /* màu bạn muốn */
+    border-color: #698a82;
+}
+
+.section-two .navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.section-two .navbar-inverse .navbar-nav > .active > a {
+    background-color: #45696f;
+    color: #fff;
+}
+
+.section-two .navbar-inverse .navbar-nav > li > a:hover {
+    background-color: #698a82 !important;
+    color: #fff !important;
+}
+
+.section-two .navbar-inverse .dropdown-menu > li > a:hover {
+    background-color: #698a82 !important;
+    color: #fff !important;
+}
+
+.section-two .navbar-inverse .navbar-nav > .open > a,
+.section-two .navbar-inverse .navbar-nav > .open > a:hover,
+.section-two .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #698a82 !important;
+    color: #fff !important;
+}
+
+/*Product List*/
+
+/* =========================
+   GRID FIX - KHÔNG LỆCH HÀNG
+========================= */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-sm-4 {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-box {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+.product-box img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+/* =========================
+   PRODUCT CONTENT
+========================= */
+.inner-title {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-title h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.inner-title p {
+    font-size: 14px;
+    color: #666;
+
+    /* Giới hạn 3 dòng */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-box{
+    position: relative;
+}
+
+.DeleteIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+
+.image-container{
+    position: relative;
+}
+
+.add-cart-btn{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.add-cart-btn:hover{
+    background-color: darkgreen;
+}
+
+/*.update-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.update-btn:hover {
+    background: linear-gradient(45deg, #ff5722, #e64a19);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}*/
