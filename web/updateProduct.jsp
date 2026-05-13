@@ -40,6 +40,8 @@
                 <c:redirect url="index.jsp"></c:redirect>
             </c:if>
             <div class="container">
+                <h2 class="form-card-title">Update Product</h2>
+                <div class="form-card">
                 <form action="DispatchServlet" method="POST" accept-charset="UTF-8">
                     <!-- Product Id -->
                     <div class="form-group">
@@ -146,6 +148,7 @@
                         Update Product
                     </button>
                 </form>
+                </div>
             </div>
             
         </div>

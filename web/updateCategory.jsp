@@ -30,6 +30,8 @@
                 <c:redirect url="index.jsp"></c:redirect>
             </c:if>
             <div class="container">
+                <h2 class="form-card-title">Update Category</h2>
+                <div class="form-card">
                 <form action="DispatchServlet" method="POST">
 
                     <div class="form-group">
@@ -59,6 +61,7 @@
                         Update Category
                     </button>
                 </form>
+                </div>
             </div>
         </div> 
     </body>

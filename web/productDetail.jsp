@@ -28,8 +28,8 @@
             <%@include file="WEB-INF/menu.jspf" %>
             <c:set var="p" value="${requestScope.PRODUCT_INFO}" />
 
-            <div class="container" style="margin-top:40px">
-
+            <div class="container" style="margin-top:32px">
+                <div class="form-card">
                 <div class="row">
 
                     <!-- Product Image -->
@@ -111,7 +111,7 @@
                     </div>
 
                 </div>
-
+                </div>
             </div>
         </div>
 

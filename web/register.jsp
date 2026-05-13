@@ -26,12 +26,12 @@
     <body>
         <style>
             body {
-                margin-top: 120px;
+                padding: 60px 20px;
                 display: flex;
                 justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-color: #68c9cc;
+                align-items: flex-start;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #162d6e 0%, #1e3a8a 45%, #2563eb 80%, #0ea5e9 100%);
             }
         </style>
         <div class="section-one">

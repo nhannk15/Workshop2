@@ -26,7 +26,8 @@
         <div class="section-two">
             <%@include file="WEB-INF/menu.jspf" %>
             <div class="container">
-                <h2>New Category</h2>
+                <h2 class="form-card-title">New Category</h2>
+                <div class="form-card">
                 <form action="DispatchServlet">
                     <div class="form-group">
                         <label for="txtCategoryName">Category Name</label>
@@ -40,9 +41,10 @@
                                id="txtMemo" name="txtMemo"
                                placeholder="The product used for travling...">
                     </div>
-                    <button type="submit" class="btn btn-default"
-                            name="btnAction" value="AddNewCategory">Save</button>
+                    <button type="submit" class="btn btn-primary btn-block"
+                            name="btnAction" value="AddNewCategory">Save Category</button>
                 </form>
+                </div>
             </div>
         </div>
     </body>

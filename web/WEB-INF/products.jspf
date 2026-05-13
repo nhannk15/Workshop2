@@ -113,18 +113,16 @@
                             </a>
                         </c:if>
 
-                        <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
-
-
-
-                        <c:url var="viewDetailUrl" value="DispatchServlet">
-                            <c:param name="btnAction" value="ViewProductDetail"/>
-                            <c:param name="txtProductId" value="${dto.productId}"/>
-                        </c:url>
-
-                        <a href="${viewDetailUrl}" class="btn btn-info btn-sm">
-                            View Details
-                        </a>
+                        <div class="product-img-wrapper">
+                            <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
+                            <c:url var="viewDetailUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="ViewProductDetail"/>
+                                <c:param name="txtProductId" value="${dto.productId}"/>
+                            </c:url>
+                            <a href="${viewDetailUrl}" class="btn btn-info btn-sm view-details-overlay">
+                                View Details
+                            </a>
+                        </div>
 
 
 
@@ -166,11 +164,16 @@
                 <div class="col-sm-4">
                     <div class="product-box">
 
-                        <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
-                        <c:url var="viewDetailUrl" value="DispatchServlet">
-                            <c:param name="btnAction" value="ViewProductDetail"/>
-                            <c:param name="txtProductId" value="${dto.productId}"/>
-                        </c:url>
+                        <div class="product-img-wrapper">
+                            <img src="${pageContext.request.contextPath}${dto.productImage}" alt=""/>
+                            <c:url var="viewDetailUrl" value="DispatchServlet">
+                                <c:param name="btnAction" value="ViewProductDetail"/>
+                                <c:param name="txtProductId" value="${dto.productId}"/>
+                            </c:url>
+                            <a href="${viewDetailUrl}" class="btn btn-info btn-sm view-details-overlay">
+                                View Details
+                            </a>
+                        </div>
                         <div class="inner-title">
                             <h3>${dto.productName}</h3>
                             <p>${dto.brief}</p>

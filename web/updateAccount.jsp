@@ -33,6 +33,8 @@
                 <c:redirect url="index.jsp"></c:redirect>
             </c:if>
             <div class="container">
+                <h2 class="form-card-title">Update Account</h2>
+                <div class="form-card">
                 <form action="DispatchServlet" method="POST">
 
                     <!-- Account (readonly) -->
@@ -143,6 +145,7 @@
                     </button>
 
                 </form>
+                </div>
             </div>
         </div>        
     </body>

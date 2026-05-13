@@ -30,9 +30,13 @@
         <div class="section-two">
             <%@include file="WEB-INF/menu.jspf" %>
             <div class="container">
+                <h2 class="form-card-title" style="margin-top:24px">Your Shopping Cart</h2>
                 <c:choose>
                     <c:when test="${empty sessionScope.CART.items}">
-                        <h3>Your CART is empty</h3>
+                        <div style="text-align:center; padding:60px 0; color:#64748b;">
+                            <p style="font-size:18px; font-weight:500;">Your cart is empty</p>
+                            <a href="DispatchServlet?btnAction=ListAllProducts" class="btn btn-primary" style="margin-top:12px;">Browse Products</a>
+                        </div>
                     </c:when>
                     <c:otherwise>
                         <table class="custom-table">
@@ -87,13 +91,14 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                        <br>
-                        <h3>
-                            Total: 
-                            <fmt:formatNumber 
-                                value="${sessionScope.CART.total}" 
-                                type="number"/> VNÐ
-                        </h3>
+                        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:18px 24px; margin:20px 0; display:inline-block; min-width:280px;">
+                            <h3 style="margin:0; color:#1e3a8a; font-size:20px; font-weight:700;">
+                                Total:&nbsp;
+                                <fmt:formatNumber
+                                    value="${sessionScope.CART.total}"
+                                    type="number"/> <span style="font-size:14px; font-weight:500;">VNÐ</span>
+                            </h3>
+                        </div>
                         <br>
                         <a href="DispatchServlet?btnAction=ListAllProducts" class="btn btn-primary">
                             Continue Shopping
@@ -101,8 +106,8 @@
 
                         <br/>
                         <br/>
-                        
-                        
+                        <h4 style="font-weight:700; color:#1e3a8a; border-bottom:2px solid #dbeafe; padding-bottom:8px; margin-bottom:16px;">Delivery Information</h4>
+                        <div class="form-card" style="margin-top:0">
                         <form action="DispatchServlet">
                             <div class="form-group">
                                 <label for="txtCustomerName">Customer's name:</label>
@@ -122,9 +127,10 @@
                                        name="txtCustomerAddress" required>
                             </div>                      
                             <input type="hidden" name="" value="" />
-                            <button type="submit" class="btn btn-success"
-                                    name="btnAction" value="CheckOut">Check out!!!</button>
+                            <button type="submit" class="btn btn-success btn-block"
+                                    name="btnAction" value="CheckOut">Proceed to Checkout</button>
                         </form>
+                        </div>
 
 
                     </c:otherwise>
@@ -132,6 +138,5 @@
             </div>
 
         </div>
-        <h2>Your Cart</h2>
     </body>
 </html>

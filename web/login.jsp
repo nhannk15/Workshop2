@@ -23,14 +23,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
-                background-color: #F4F6F9;
-            }
-            
-            .homePageButton {
-                position: absolute;
-                top: 10px;
-                right: 10px;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #162d6e 0%, #1e3a8a 45%, #2563eb 80%, #0ea5e9 100%);
             }
         </style>
         <a href="index.jsp" class="btn btn-success homePageButton">Homepage</a>

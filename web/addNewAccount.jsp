@@ -26,7 +26,8 @@
         <div class="section-two">
             <%@include file="WEB-INF/menu.jspf" %>
             <div class="container">
-                <h2>Add a new account</h2>
+                <h2 class="form-card-title">Add a new account</h2>
+                <div class="form-card">
                 <form action="DispatchServlet" method="POST">
                     <div class="form-group">
                         <label for="txtAccount">Account: <p style="color:red">${requestScope.DUPLICATE_ACCOUNT}</p></label>
@@ -83,10 +84,11 @@
                                    value="true" checked>
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-default"
-                            name="btnAction" value="AddNewAccount">Submit</button>
-                </form> 
-            </div>            
+                    <button type="submit" class="btn btn-primary btn-block"
+                            name="btnAction" value="AddNewAccount">Create Account</button>
+                </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

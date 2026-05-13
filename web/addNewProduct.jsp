@@ -32,7 +32,8 @@
         <div class="section-two">
             <%@include file="WEB-INF/menu.jspf" %>
             <div class="container">
-                <h2>Add a new product</h2>
+                <h2 class="form-card-title">Add a new product</h2>
+                <div class="form-card">
                 <form action="DispatchServlet" method="POST">
 
                     <!-- Product Id -->
@@ -147,7 +148,8 @@
                         Add Product
                     </button>
                 </form>
-            </div>            
+                </div>
+            </div>
         </div>
     </body>
 </html>
