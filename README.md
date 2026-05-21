@@ -1,4 +1,4 @@
-# SE1919 - Workshop 2: Product Introduction Website
+# Product Introduction Website
 
 A Java EE web application for managing and showcasing products, built with NetBeans, Servlets, JSP, JPA (EclipseLink), and Microsoft SQL Server.
 
