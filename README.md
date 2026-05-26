@@ -1,4 +1,4 @@
-# Product Introduction Website
+# Online Shopping Website
 
 A Java EE web application for managing and showcasing products, built with NetBeans, Servlets, JSP, JPA (EclipseLink), and Microsoft SQL Server.
 
